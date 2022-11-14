@@ -24,7 +24,7 @@ import React from 'react'
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import Button from '@mui/material/Button';[label](https://mui.com/material-ui/react-dialog/)
 import styled from 'styled-components';
 import { useRef } from 'react';
 

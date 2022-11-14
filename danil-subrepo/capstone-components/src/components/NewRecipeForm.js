@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Unstable_Grid2';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -23,6 +23,7 @@ import Fade from '@mui/material/Fade';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import { styled as muiStyled } from '@mui/material/styles';
 //MUI ICONS IMPORT
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
@@ -37,6 +38,13 @@ const FormPaper = styled(Paper)`
   flex-direction: column;
   gap: 1rem;
 `;
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: "#1976d2",
+    color: "#FFFFFF",
+  }
+}));
 
 const modalStyle = {
     position: 'absolute',
@@ -169,9 +177,9 @@ const NewRecipeForm = () => {
       <Table sx={{ minWidth: 400,maxWidth: 800 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Ingredient</TableCell>
-            <TableCell align='right'>Quantity</TableCell>
-            <TableCell align="right">Edit</TableCell>
+            <StyledTableCell>Ingredient</StyledTableCell>
+            <StyledTableCell align='right'>Quantity</StyledTableCell>
+            <StyledTableCell align="right">Edit</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -271,8 +279,8 @@ const NewRecipeForm = () => {
       <Table sx={{ minWidth: 400,maxWidth: 800 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Instruction</TableCell>
-            <TableCell align="right">Edit</TableCell>
+            <StyledTableCell>Instruction</StyledTableCell>
+            <StyledTableCell align="right">Edit</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
