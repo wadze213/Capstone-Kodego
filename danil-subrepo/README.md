@@ -4,6 +4,8 @@ This is a documentation file used to journal component creation, associated func
 This file is to be used as a documentation for the person in charge of the full stack aspect of the app. 
 Components code is explained below and react environment is available in the capstone-components directory.
 
+Live website - [Vercel](https://capstone-kodego-danil-components-amiov4wdy-wadze213.vercel.app/)
+
 ## Table of contents 
 
 - [Forms](#forms)
