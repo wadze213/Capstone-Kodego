@@ -1,0 +1,95 @@
+/* heroSec */
+.hero{
+    min-height: 95vh;
+    color: white;
+    background: url(/src/img/heroBG.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    background-position: center;
+  }
+  .hero > .plate > img{
+    display: none;
+  }
+  .mobileBG{
+    background-color: rgba(0, 0, 0, 0.571);
+    width: 100%;
+    height: 95vh;
+  }
+  .heroButton{
+    background-color: white;
+  }
+  .heroButton:hover{
+    background-color: rgb(192, 192, 192);
+  }
+
+  /* secondSec */
+  .secondSec{
+    min-height: 95vh;
+  }
+  .secondSecCont{
+    width: 100%;
+  }
+  .cards{
+    padding: 10px;
+    background-color: #f8f9fa;;
+    border: 1px solid black;
+    border-radius: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* thirdSec */
+  .thirdSec{
+    min-height: 95vh;
+  }
+  .thirdSecImg{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  /* fourthSec */
+  .fourthSec{
+    min-height: 95vh;
+  }
+  .fourthSecImg{
+    width: 100%;
+  }
+  
+  @media screen and (min-width:950px){
+    .secondSecCont{
+      width: 950px;
+    }
+  }
+  @media screen and (min-width:768px) {
+    .hero{
+      color: black;
+      background: url();
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: scroll;
+      background-position: center;
+    }
+    .hero > .plate > img{
+      width: 30vw;
+      display: block;
+    }
+    .mobileBG{
+      background-color: rgba(0, 0, 0, 0);
+      width: auto;
+      height: auto;
+    }
+    .heroButton{
+      background-color: black;
+      color: white;
+    }
+  }
+
+  @media screen and (min-width:1180px) {
+    .fourthSecImg{
+      width: 60vh;
+    }
+  }
