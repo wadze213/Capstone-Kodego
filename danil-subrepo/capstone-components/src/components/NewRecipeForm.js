@@ -107,6 +107,7 @@ const NewRecipeForm = () => {
             id: id,
             ingredient_name: ingredientRef.current.value,
             quantity: displayQuantity(),
+            quantityInt: quantityRef.current.value,
             unit_id: unitRef.current.value
         }
         console.log(newIngredient)
@@ -124,7 +125,6 @@ const NewRecipeForm = () => {
         })
         setIngredientsList(remove)
     }
-    //Handle move ingredient
 
     //Handle add instruction
     let handleNewInstruction = (e) => {
@@ -145,6 +145,8 @@ const NewRecipeForm = () => {
         })
         setInstructionsList(remove)
     }
+    //Handle edit instruction
+
     //Handle move instruction
 
     
@@ -179,7 +181,7 @@ const NewRecipeForm = () => {
           <TableRow>
             <StyledTableCell>Ingredient</StyledTableCell>
             <StyledTableCell align='right'>Quantity</StyledTableCell>
-            <StyledTableCell align="right">Edit</StyledTableCell>
+            <StyledTableCell align="right">Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -194,22 +196,7 @@ const NewRecipeForm = () => {
                 <TableCell align="right">
                     {row.quantity}
                 </TableCell>
-                <TableCell align="right" sx={{width: "150px"}}>
-                    <Tooltip title="Edit">
-                        <IconButton aria-label="edit" color="primary">
-                            <EditIcon fontSize='small'/>
-                        </IconButton>  
-                    </Tooltip>
-                    <Tooltip title="Move up">
-                        <IconButton aria-label="edit" color="primary">
-                            <VerticalAlignTopIcon fontSize='small'/>
-                        </IconButton>  
-                    </Tooltip>
-                    <Tooltip title="Move down">
-                        <IconButton aria-label="edit" color="primary">
-                            <VerticalAlignBottomIcon fontSize='small'/>
-                        </IconButton>  
-                    </Tooltip>
+                <TableCell align="right" sx={{width: "100px"}}>
                     <Tooltip title="Delete">
                         <IconButton aria-label="edit" color="primary" id={row.id} onClick={handleRemoveIngredient} >
                             <DeleteOutlineIcon fontSize='small' id={row.id}/>
@@ -280,7 +267,7 @@ const NewRecipeForm = () => {
         <TableHead>
           <TableRow>
             <StyledTableCell>Instruction</StyledTableCell>
-            <StyledTableCell align="right">Edit</StyledTableCell>
+            <StyledTableCell align="right">Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
