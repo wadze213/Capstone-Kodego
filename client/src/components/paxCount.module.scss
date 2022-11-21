@@ -1,0 +1,32 @@
+@import '../styles/variables.scss';
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: $lightGrey;
+    border-radius: .5rem;
+    padding: $padding;
+    margin: $margin;
+    .countContainer{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .counter{
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            gap: .5rem;
+            font-weight: 700;
+            div{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 1rem;
+            }
+        }
+    }
+}
+.green{
+    color: $primaryDark;
+}

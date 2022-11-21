@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+$poppins: "Poppins", sans-serif;
+
+// colors
+// PRIMARY 
+$primaryDark: #36BF06;
+$primaryMain: #3FDC07;
+$primaryLight: #93F86F;
+// ACCENT
+$white: #FFFFFF;
+$lightGrey: #F5F5F5;
+$darkGrey: #9f9f9f;
+$charcoal: #292626;
+// ALERTS
+$danger: #FF8A8A;
+$warning: #FFDE9E;
+$alert: #219DE3;
+//SHADOW
+$shadowcolor: hsla(0,0%,0%,.15);
+
+// spacing and margins
+$margin: 1rem;
+$padding: 1rem; 
+$gap: 1rem;
+
+// border radius
+$borderRadius: .5rem;
+
+
