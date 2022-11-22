@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './recipeforms.module.scss';
+import classes from './forms.module.scss';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 const RecipeIngredientsForm = () => {
