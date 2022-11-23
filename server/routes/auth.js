@@ -6,5 +6,6 @@ const user_controller = require('../controllers/user_auth');
 router.post("/insert", recipe_controller.addIngredient);
 
 router.post("/registeruser", user_controller.registerUser);
+router.post("/loginuser", user_controller.loginUser);
 
 module.exports = router

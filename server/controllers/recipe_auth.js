@@ -6,7 +6,8 @@ const db = mysql.createPool({
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
     port: process.env.DATABASE_PORT
-});
+})
+
 
 exports.addIngredient=(req,res)=>{
 

@@ -13,12 +13,15 @@ const RegisterForm = () => {
     const [region, setRegion] = useState("");
     const [country, setCountry] = useState("Philippines");
 
-    let register = () => {
-        Axios.post('http://localhost:3001/registeruser',
+    let register = (e) => {
+        e.preventDefault();
+        console.log(password, confirmPassword)
+        Axios.post('http://localhost:3001/api/registeruser',
         {
             username: username,
             email: email,
             password: password,
+            confirm_password: confirmPassword,
             address_one: address1,
             address_two: address2,
             region: region,
