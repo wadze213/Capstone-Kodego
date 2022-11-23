@@ -6,6 +6,8 @@ const LogInForm = () => {
   const [username,setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const [formAlert, setFormAlert] = useState("All fields are mandatory")
+
   let login = (e) => {
     e.preventDefault();
     console.log(username,password)
@@ -14,13 +16,15 @@ const LogInForm = () => {
       username: username,
       password: password
     }).then((response)=>{
-      console.log(response);
+      console.log(response.data.message);
+      setFormAlert(response.data.message)
     })
   }
   return (
     <div className={classes.container}>
         <h1 className={classes.formtitle}>Log in</h1>
         <form className={classes.formcontainer}>
+        <span className={classes.formAlerts}>{formAlert}</span>
             <div className={classes.inputfield}>
                 <label for="username">Username</label>
                 <input type="text" name="username" placeholder='Username' onChange={(e)=> {setUsername(e.target.value)}}></input>

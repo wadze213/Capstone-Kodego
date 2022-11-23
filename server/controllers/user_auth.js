@@ -28,6 +28,8 @@ exports.registerUser=(req,res)=>{
         }else{
             if(result.length>0){
                 console.log("Registration: Username exists")
+                console.log(result)
+                res.send({message: "Username already exists"})
             }else{
                 db.query("SELECT email FROM customers WHERE email = ?", [email], (err,result)=>{
                     if(err){
@@ -35,8 +37,10 @@ exports.registerUser=(req,res)=>{
                     }else{
                         if(result.length > 0){
                             console.log("Registration: Email exists")
+                            res.send({message: "Email already exists"})
                         }else if(password !== confirm_password){
                             console.log("Registration: Passwords don't match")
+                            res.send({message: "Passwords don't match"})
                         }else{
                             db.query("INSERT INTO customers (username,email,password,address_one,address_two,region,country) VALUES(?,?,?,?,?,?,?)",[username,email,password,address_one,address_two,region,country],(err,result)=>{
                                 if(err){
@@ -44,6 +48,7 @@ exports.registerUser=(req,res)=>{
                                 }else{
                                     console.log(`Registration: Success` +result)
                                     console.log(result)
+                                    res.send({message: "Account created"})
                                 }
                             })
                         }
@@ -65,8 +70,10 @@ exports.loginUser=(req,res)=>{
         if(result.length > 0){
             console.log("Login: Success:")
             console.log(result)
+            res.send({message: "Succesfully logged in"})
         }else{
             console.log("Login: No matching username-passsword combination")
+            res.send({message: "No matching username-passsword combination"})
         }
     })
     
