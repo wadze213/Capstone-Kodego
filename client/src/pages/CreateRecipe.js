@@ -4,11 +4,13 @@ import RecipeInfoForm from '../components/RecipeInfoForm'
 import RecipeIngredientsForm from '../components/RecipeIngredientsForm'
 import RecipeInstructionForm from '../components/RecipeInstructionForm'
 import classes from './pagesClasses.module.scss'
+import UserHeader from '../components/UserHeader'
 
 const CreateRecipe = () => {
   
   return (
     <div className={classes.pagecontainer}>
+      <UserHeader/>
       <div className={classes.pageHeader}>
         <h1>CREATE</h1>
         <p>Create recipes to share with others and generate grocery lists from it.</p>
