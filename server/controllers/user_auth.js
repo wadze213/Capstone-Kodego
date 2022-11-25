@@ -1,5 +1,7 @@
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
+const bcrypt = require('bcrypt');
+const saltrounds = 10;
 
 dotenv.config({path:'./.env'});
 
@@ -10,7 +12,6 @@ const db = mysql.createPool({
     database: process.env.DATABASE,
     port: process.env.DATABASE_PORT
 })
-
 
 exports.registerUser=(req,res)=>{
     const username = req.body.username;
@@ -42,15 +43,23 @@ exports.registerUser=(req,res)=>{
                             console.log("Registration: Passwords don't match")
                             res.send({message: "Passwords don't match"})
                         }else{
-                            db.query("INSERT INTO customers (username,email,password,address_one,address_two,region,country) VALUES(?,?,?,?,?,?,?)",[username,email,password,address_one,address_two,region,country],(err,result)=>{
+                            bcrypt.hash(password, saltrounds, (err, hash) => {
                                 if(err){
-                                    console.log(`Registration: Insert error` + err)
+                                    console.log("Registratrion: Hashing error")
+                                    console.log(err)
                                 }else{
-                                    console.log(`Registration: Success` +result)
-                                    console.log(result)
-                                    res.send({message: "Account created"})
+                                    db.query("INSERT INTO customers (username,email,password,address_one,address_two,region,country) VALUES(?,?,?,?,?,?,?)",[username,email,hash,address_one,address_two,region,country],(err,result)=>{
+                                        if(err){
+                                            console.log(`Registration: Insert error` + err)
+                                        }else{
+                                            console.log(`Registration: Success` +result)
+                                            console.log(result)
+                                            res.send({message: "Account created"})
+                                        }
+                                    })
                                 }
                             })
+                            
                         }
                     }
                 })
@@ -63,18 +72,35 @@ exports.loginUser=(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
 
-    db.query("SELECT * FROM customers WHERE username = ? AND password = ?",[username,password],(err,result)=>{
+    db.query("SELECT * FROM customers WHERE username = ?",[username],(err,result)=>{
         if(err){
             console.log("Login: Error" +err)
         }
         if(result.length > 0){
-            console.log("Login: Success:")
-            console.log(result)
-            res.send({message: "Succesfully logged in"})
+            bcrypt.compare(password, result[0].password,(err,response)=>{
+                if(response){
+                    req.session.user = result;
+                    console.log(req.session.user);
+                    // console.log("Login: Success:");
+                    // console.log(result);
+                    res.send({message: "Succesfully logged in"});
+                }else{
+                    console.log("Login: No matching username-passsword combination")
+                    res.send({message: "No matching username-passsword combination"})
+                }
+            })
+            
         }else{
-            console.log("Login: No matching username-passsword combination")
-            res.send({message: "No matching username-passsword combination"})
+            console.log("Login: User does not exist")
+            res.send({message: "Username does not exist"})
         }
-    })
-    
+    })    
+}
+
+exports.loginStatus=(req,res)=>{
+    if(req.session.user){
+        res.send({loginStatus: true, user: req.session.user})
+    }else{
+        res.send({loginStatus: false})
+    }
 }

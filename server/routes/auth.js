@@ -7,5 +7,6 @@ router.post("/insert", recipe_controller.addIngredient);
 
 router.post("/registeruser", user_controller.registerUser);
 router.post("/loginuser", user_controller.loginUser);
+router.get("/loginuser", user_controller.loginStatus);
 
 module.exports = router

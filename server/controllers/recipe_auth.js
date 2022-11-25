@@ -10,11 +10,8 @@ const db = mysql.createPool({
 
 
 exports.addIngredient=(req,res)=>{
-
-    const ingredient_name = req.body.ingredient_name;
-    
+    const ingredient_name = req.body.ingredient_name;    
     db.query("INSERT INTO ingredient (ingredient_name) VALUES(?)",[ingredient_name],(err,result)=>{
         console.log(result);
-    })
-    
+    })   
 }

@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import classes from './forms.module.scss';
 import Axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 const LogInForm = () => {
   const [username,setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [formAlert, setFormAlert] = useState("All fields are mandatory")
+  const [loginStatus, setLoginStatus] = useState("Logged out")
 
+  Axios.defaults.withCredentials = true;
   let login = (e) => {
     e.preventDefault();
     console.log(username,password)
@@ -17,9 +20,16 @@ const LogInForm = () => {
       password: password
     }).then((response)=>{
       console.log(response.data.message);
-      setFormAlert(response.data.message)
+      setFormAlert(response.data.message);
     })
   }
+
+  useEffect(()=>{
+    Axios.get("http://localhost:3001/api/loginuser").then((response) => {
+      
+    })
+  },[])
+
   return (
     <div className={classes.container}>
         <h1 className={classes.formtitle}>Log in</h1>

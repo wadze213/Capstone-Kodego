@@ -8,6 +8,7 @@
     border-radius: .5rem;
     padding: $padding;
     margin: $margin;
+    box-shadow: 0px 0px 7px $shadowcolor;
     .countContainer{
         display: flex;
         justify-content: space-between;

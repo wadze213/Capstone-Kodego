@@ -7,6 +7,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors');
 const { post } = require('./routes/auth');
 const mysql = require("mysql2");
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 dotenv.config({path:'./.env'});
 
@@ -16,11 +18,25 @@ const db = mysql.createConnection({
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
     port: process.env.DATABASE_PORT
-})
+});
 
-app.use(cors())
-app.use(express.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(cors({
+  origin: true,
+  methods: ["GET","POST"],
+  credentials: true
+}));
+app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(session({
+  key: "userId",
+  secret: process.env.COOKIE_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      expires: 60 * 60 * 24
+  }
+}));
 
 app.use("/api", require("./routes/auth"))
 
