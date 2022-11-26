@@ -5,6 +5,7 @@ import UserMenu from './UserMenu';
 import CreateRecipe from './CreateRecipe';
 import LogIn from './LogIn';
 import Register from './Register';
+import Recipe from './Recipe';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 
 const Index = () => {
@@ -18,6 +19,7 @@ const Index = () => {
             <Route exact path='/userhome' element={<UserHome/>}></Route>
             <Route exact path='/usermenu' element={<UserMenu/>}></Route>
             <Route exact path='/createrecipe' element={<CreateRecipe/>}></Route>
+            <Route exact path='/recipe/:id' element={<Recipe/>}></Route>
         </Routes>
       </Router>
     </div>
