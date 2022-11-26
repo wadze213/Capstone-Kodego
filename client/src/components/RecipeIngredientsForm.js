@@ -1,52 +1,103 @@
-import React from 'react'
-import classes from './forms.module.scss';
+import React, { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import classes from './recipeforms.module.scss';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import Axios from 'axios';
 
 const RecipeIngredientsForm = () => {
+
+    const navigate = useNavigate();
+    const [ingredient_name, setIngredientName] = useState('');
+    const [unit_id, setUnitId] = useState();
+    const [quantity, setQuantity] = useState();
+    const {recipe_name} = useParams();
+    const [recipeInstList, setRecipeList] = useState([]) 
+
+    const submitIngredient=(event)=>{
+        
+        Axios.post("http://localhost:3001/api/insertIngredient", {
+            recipe_name: {recipe_name},
+            ingredient_name: ingredient_name,
+            unit_id: unit_id,
+            quantity: quantity
+        }).then(()=>{
+            alert("succesfull insert")
+        });
+        alert("Succesfull Insert")
+    }
+
+    useEffect(()=>{
+        Axios.get("http://localhost:3001/api/getIngredient", {
+            params: {
+                Rec_Name: recipe_name,
+            },
+        }).then((response)=>{
+            setRecipeList(response.data)
+          });
+      },[]);
+
+    const deleteIngredient = (ingredient) =>{
+        Axios.delete(`http://localhost:3001/api/delIngredient/${ingredient}`);
+        alert("Ingredient Deleted")
+    }
+
+    const cancelRec = () =>{
+        Axios.delete(`http://localhost:3001/api/cancelRecipe/${recipe_name}`);
+        navigate("/userHome")
+        alert("Recipe Canceled")
+    }
+    const SubmitRecipe = () =>{
+        navigate("/userHome")
+        alert("Recipe Created Successfully")
+        
+    }
+
   return (
     <div className={classes.container}>
         <h1 className={classes.formtitle}>Recipe ingredients</h1>
-        <form className={classes.formcontainer}>
+        <form className={classes.formcontainer} onSubmit>
             <div className={classes.inputfield}>
                 <label for="recipe_title">Ingredient name</label>
-                <input type="text" name="ingredient_name" placeholder='Ingredient name'></input>
+                <input type="text" name="ingredient_name" placeholder='Ingredient name' onChange={(e)=>{
+                    setIngredientName(e.target.value)
+                }}></input>
             </div>
             <div className={classes.inputfield}>
-                <label for="ingredient_quantity">Ingredient quantity</label>
-                <input type="number" name="ingredient_quantity" placeholder='Quantity'></input>
+                <label for="quantity">Ingredient quantity</label>
+                <input type="number" name="quantity" placeholder='Quantity' onChange={(e)=>{
+                    setQuantity(e.target.value)
+                }}></input>
             </div>
             <div className={classes.inputfield}>
-                <label for="ingredient_unit">Quantity units</label>
-                <select>
-                    <option value="">Select unit</option>
-                    <option value="filipino">Kilogram(Kg)</option>
-                    <option value="chinese">Gram(g)</option>
-                    <option value="chinese">Mililiter(mL)</option>
-                    <option value="chinese">Liters(L)</option>
-                    <option value="chinese">Tablespoon(TBSP)</option>
-                    <option value="chinese">Teaspoon(TSP)</option>
-                    <option value="chinese">Pieces</option>
-                    <option value="chinese">Cups</option>
+                <label for="unit_id">Quantity units</label>
+                <select name="unit_id" onChange={(e)=>{
+                    setUnitId(e.target.value)
+                }}>
+                    <option value="" hidden disabled selected>Select unit</option>
+                    <option value={1}>Kilogram(Kg)</option>
+                    <option value={2}>Gram(g)</option>
+                    <option value={3}>Mililiter(mL)</option>
+                    <option value={4}>Liters(L)</option>
+                    <option value={5}>Tablespoon(TBSP)</option>
+                    <option value={6}>Teaspoon(TSP)</option>
+                    <option value={7}>Pieces</option>
+                    <option value={8}>Cups</option>
                 </select>
             </div>
-            <input type="submit" name="ingredientSubmit" value="Add ingredient"></input>
+            <input type="submit" name="ingredientSubmit" value="Add ingredient" onClick={submitIngredient}></input>
             <div className={classes.ingredientlist}>
-                <div className={classes.ingredientContainer}>
-                    <p>Tomato, 3 pieces.</p>
-                    <HighlightOffIcon/>
-                </div>
-                <div className={classes.ingredientContainer}>
-                    <p>Red onion, 1 pieces.</p>
-                    <HighlightOffIcon/>
-                </div>
-                <div className={classes.ingredientContainer}>
-                    <p>Chicken breast, 1 Kg.</p>
-                    <HighlightOffIcon/>
-                </div>
-                <div className={classes.ingredientContainer}>
-                    <p>Coconut milk, 2 cups.</p>
-                    <HighlightOffIcon/>
-                </div>
+                {recipeInstList.map((val)=>{
+                    return(
+                        <div className={classes.ingredientContainer}>
+                            <p>{val.ingredient_name}, {val.quantity} {val.unit_name}.</p>
+                            <button onClick={()=>{deleteIngredient(val.ingredient_name)}}><HighlightOffIcon/></button>
+                        </div>
+                    )
+                })}
+            </div>
+            <div>
+                <button onClick={cancelRec}>Cancel</button>
+                <button onClick={SubmitRecipe}>Create Recipe!</button>
             </div>
         </form>
     </div>

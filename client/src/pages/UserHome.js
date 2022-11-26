@@ -7,6 +7,8 @@ import UserHeader from '../components/UserHeader'
 const UserHome = () => {
     let recipeSample = [{id: 1,title: "Crispy pork belly lechon", category: "Filipino classics", author:"Alex"}, {id: 2,title: "Beef brocolli with scallions", category: "Chinese classics", author:"Wu Han"}];
     
+    
+
   return (
     <div>
       <UserHeader/>
