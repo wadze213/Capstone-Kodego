@@ -13,4 +13,11 @@ router.post("/registeruser", user_controller.registerUser);
 router.post("/loginuser", user_controller.loginUser);
 router.get("/loginuser", user_controller.loginStatus);
 
+
+
+router.get("/displayRecipe", recipe_controller.displayRecipe);
+router.get("/displayRecipe1/:id", recipe_controller.displayRecipe1);
+router.get("/ingredient/:id", recipe_controller.ingredient);
+
+
 module.exports = router

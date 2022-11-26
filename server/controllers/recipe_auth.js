@@ -1,5 +1,8 @@
 const mysql = require('mysql');
 
+
+
+require('dotenv').config()
 const db = mysql.createPool({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
@@ -100,4 +103,43 @@ exports.cancelRecipe=(req,res)=>{
     })
 }
 
+
+// Glenn
+
+exports.displayRecipe=(req,res)=>{
+
+    
+    
+    db.query("SELECT recipe_id, recipe_name, category,instructions, username FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id",(err,result)=>{
+        res.send(result)
+       
+    })
+    
+}
+
+exports.displayRecipe1=(req,res)=>{
+
+    const recipe_id = req.params.id;
+    
+    
+        
+        db.query(`SELECT recipe_id, recipe_name, category,instructions, username FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id WHERE recipe_id = ${recipe_id}`,(err,result)=>{
+            res.send(result)
+          
+        })
+        
+    }
+    exports.ingredient=(req,res)=>{
+    
+        const ingredient_id = req.params.id;
+    
+        
+        db.query(`SELECT  ri.quantity , mu.unit_name  , i.ingredient_name  FROM recipe_ingredient ri JOIN unit mu on mu.unit_id= ri.unit_id JOIN ingredient i on i.ingredient_id = ri.ingredient_id WHERE recipe_id = ${ingredient_id}`
+        ,(err,result)=>{
+            res.send(result)
+         
+        })
+        
+    }
+    
 
