@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import classes from './recipeforms.module.scss';
+import classes from './forms.module.scss';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import Axios from 'axios';
 

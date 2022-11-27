@@ -3,8 +3,8 @@ import { useNavigate} from 'react-router-dom'
 import BottomNav from '../components/BottomNav'
 import RecipeIngredientsForm from '../components/RecipeIngredientsForm'
 import classes from './pagesClasses.module.scss'
-import classesRIF from '../components/recipeforms.module.scss';
-import classesINST from '../components/recipeforms.module.scss';
+import classesRIF from '../components/forms.module.scss';
+import classesINST from '../components/forms.module.scss';
 import Axios from 'axios'
 
 const CreateRecipe = () => {
