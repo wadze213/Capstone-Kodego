@@ -22,7 +22,7 @@ let navigate = useNavigate();
                 <div className={classes.recipeDescription}>
                   <h4>{recipe.recipe_name}</h4>
                   <p className={classes.recipeCategory}>{recipe.category}</p>
-                  <p>Created by : {recipe.full_name}</p>
+                  <p>Created by : {recipe.username}</p>
                   <h5>Ingredients</h5> 
                   {ingredient.map((val)=>{
                     return(

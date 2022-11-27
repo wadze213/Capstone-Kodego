@@ -75,6 +75,7 @@ exports.loginUser=(req,res)=>{
     db.query("SELECT * FROM customers WHERE username = ?",[username],(err,result)=>{
         if(err){
             console.log("Login: Error" +err)
+
         }
         if(result.length > 0){
             bcrypt.compare(password, result[0].password,(err,response)=>{
@@ -93,6 +94,7 @@ exports.loginUser=(req,res)=>{
         }else{
             console.log("Login: User does not exist")
             res.send({message: "Username does not exist"})
+
         }
     })    
 }

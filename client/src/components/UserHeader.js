@@ -21,7 +21,7 @@ const UserHeader = () => {
   return (
     <div className={classes.container}>
       <div className={classes.logo}>
-        <h3>U COOKIN</h3>
+        <a href="/userhome"><h3>U COOKIN</h3></a>
       </div>
       <div className={classes.status}>
         <small>{loginStatus}</small>
