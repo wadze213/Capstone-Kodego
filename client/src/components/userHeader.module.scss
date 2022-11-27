@@ -9,7 +9,11 @@
     background-color: $lightGrey;
     box-shadow: 0px 5px 5px $shadowcolor;
     .logo{
-        color: $primaryDark;
+        a{
+            color: $primaryDark;
+            text-decoration: none;
+        }
+        
     }
     .status{
         color: $primaryDark;

@@ -6,6 +6,7 @@ import classes from './pagesClasses.module.scss'
 import classesRIF from '../components/forms.module.scss';
 import classesINST from '../components/forms.module.scss';
 import Axios from 'axios'
+import UserHeader from '../components/UserHeader'
 
 const CreateRecipe = () => {
   
@@ -13,12 +14,21 @@ const CreateRecipe = () => {
     const [recipe_name, setRecipeName] = useState('');
     const [category, setCategory] = useState('');
     const [recipe_instruction, setRecipe_instruction] = useState('');
+    const [custId, setCustId] = useState(1);
+    useEffect(()=>{
+      Axios.get("http://localhost:3001/api/loginuser").then((response) => {
+          if(response.data.loginStatus === true){
+              setCustId(response.data.user[0].cust_id)
+          }
+        });
+    },[]);
 
     let submitRecipe=()=>{
       Axios.post("http://localhost:3001/api/insertRecipe", {
             recipe_name: recipe_name,
             category: category,
-            recipe_instruction: recipe_instruction
+            recipe_instruction: recipe_instruction,
+            cust_id: custId
         }).then();
 
         navigate(`/createrecipe/addingredient${recipe_name}`)
@@ -26,6 +36,7 @@ const CreateRecipe = () => {
 
   return (
     <div className={classes.pagecontainer}>
+      <UserHeader/>
       <div className={classes.pageHeader}>
         <h1>CREATE</h1>
         <p>Create recipes to share with others and generate grocery lists from it.</p>
