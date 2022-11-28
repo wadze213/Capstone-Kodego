@@ -1,24 +1,42 @@
-import React from 'react'
-import BottomNav from '../components/BottomNav'
-import RecipeListContainer from '../components/RecipeListContainer'
-import PaxCount from '../components/PaxCount'
-import classes from './pagesClasses.module.scss'
-import UserHeader from '../components/UserHeader'
+import React, { useState, useEffect } from "react";
+import BottomNav from "../components/BottomNav";
+import RecipeListContainer from "../components/RecipeListContainer";
+import PaxCount from "../components/PaxCount";
+import classes from "./pagesClasses.module.scss";
+import UserHeader from "../components/UserHeader";
+import Menu from "../components/Menu";
+import Axios from "axios";
+import { useParams } from "react-router-dom";
+import swal from "sweetalert";
 
 const UserMenu = () => {
-  let recipeSample = [{id: 1,title: "Crispy pork belly lechon", category: "Filipino classics", author:"Alex"}, {id: 2,title: "Beef brocolli with scallions", category: "Chinese classics", author:"Wu Han"}];
+  const [recipeList1, setRecipeList1] = useState([]);
+
+  const params = useParams();
+
+  useEffect(() => {
+    const url = `http://localhost:3001/api/displayRecipe1/${params.id}`;
+
+    Axios.get(url).then((response) => {
+      setRecipeList1(response.data);
+    }, []);
+  }, []);
+
   return (
     <div>
-      <UserHeader/>
+      <UserHeader />
       <div className={classes.pageHeader}>
-            <h1>MENU</h1>
-            <p>An overlooking of the recipes you want to cook. From here, you can generate a grocery list and recipe instructions.</p>
+        <h1>MENU</h1>
+        <p>
+          An overlooking of the recipes you want to cook. From here, you can
+          generate a grocery list and recipe instructions.
+        </p>
       </div>
-      <RecipeListContainer title="Recipes" recipeSample={recipeSample} remove={true}/>
-      <PaxCount/>
-      <BottomNav selected="menu"/>
+      <Menu recipeSample3={recipeList1} />
+      <PaxCount />
+      <BottomNav selected="menu" />
     </div>
-  )
-}
+  );
+};
 
-export default UserMenu
+export default UserMenu;
