@@ -1,7 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import { useNavigate} from 'react-router-dom'
 import BottomNav from '../components/BottomNav'
-import RecipeIngredientsForm from '../components/RecipeIngredientsForm'
 import classes from './pagesClasses.module.scss'
 import classesRIF from '../components/forms.module.scss';
 import classesINST from '../components/forms.module.scss';
@@ -15,6 +14,11 @@ const CreateRecipe = () => {
     const [category, setCategory] = useState('');
     const [recipe_instruction, setRecipe_instruction] = useState('');
     const [custId, setCustId] = useState(1);
+
+    function capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     useEffect(()=>{
       Axios.get("http://localhost:3001/api/loginuser").then((response) => {
           if(response.data.loginStatus === true){
@@ -25,13 +29,13 @@ const CreateRecipe = () => {
 
     let submitRecipe=()=>{
       Axios.post("http://localhost:3001/api/insertRecipe", {
-            recipe_name: recipe_name,
+            recipe_name: capitalizeFirstLetter(recipe_name.trim()),
             category: category,
             recipe_instruction: recipe_instruction,
             cust_id: custId
         }).then();
 
-        navigate(`/createrecipe/addingredient${recipe_name}`)
+        navigate(`/createrecipe/addingredient${capitalizeFirstLetter(recipe_name.trim())}`)
     }
 
   return (

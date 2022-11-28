@@ -6,18 +6,22 @@ import Axios from 'axios';
 
 const RecipeIngredientsForm = () => {
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
     const navigate = useNavigate();
     const [ingredient_name, setIngredientName] = useState('');
     const [unit_id, setUnitId] = useState();
     const [quantity, setQuantity] = useState();
     const {recipe_name} = useParams();
-    const [recipeInstList, setRecipeList] = useState([]) 
+    const [recipeInstList, setRecipeList] = useState([]);
 
     const submitIngredient=(event)=>{
         
         Axios.post("http://localhost:3001/api/insertIngredient", {
             recipe_name: {recipe_name},
-            ingredient_name: ingredient_name,
+            ingredient_name: capitalizeFirstLetter(ingredient_name.trim()),
             unit_id: unit_id,
             quantity: quantity
         }).then(()=>{
