@@ -38,7 +38,7 @@ const RecipeIngredientsForm = () => {
         }).then((response)=>{
             setRecipeList(response.data)
           });
-      },[]);
+      },[recipe_name]);
 
     const deleteIngredient = (ingredient) =>{
         Axios.delete(`http://localhost:3001/api/delIngredient/${ingredient}`);

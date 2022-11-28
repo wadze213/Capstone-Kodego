@@ -8,15 +8,20 @@ import Axios from 'axios'
 import UserHeader from '../components/UserHeader'
 
 const CreateRecipe = () => {
-  
+
     const navigate = useNavigate();
     const [recipe_name, setRecipeName] = useState('');
     const [category, setCategory] = useState('');
     const [recipe_instruction, setRecipe_instruction] = useState('');
     const [custId, setCustId] = useState(1);
+    const [image, setImage] = useState();
+    const [image_name, setImageName] = useState("");
 
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    function formatImageName(string){
+      return string.split(" ").join("").toLowerCase();
     }
 
     useEffect(()=>{
@@ -27,15 +32,23 @@ const CreateRecipe = () => {
         });
     },[]);
 
-    let submitRecipe=()=>{
-      Axios.post("http://localhost:3001/api/insertRecipe", {
-            recipe_name: capitalizeFirstLetter(recipe_name.trim()),
-            category: category,
-            recipe_instruction: recipe_instruction,
-            cust_id: custId
-        }).then();
 
-        navigate(`/createrecipe/addingredient${capitalizeFirstLetter(recipe_name.trim())}`)
+    let submitRecipe=()=>{
+      let originalName = document.getElementById('image').value;
+      setImageName(formatImageName(originalName));
+
+      const data = new FormData();
+      data.append("recipe_name", capitalizeFirstLetter(recipe_name.trim()));
+      data.append("category", category);
+      data.append("recipe_instruction", recipe_instruction);
+      data.append("cust_id", custId);
+      data.append("image_name", image_name)
+      data.append("image",image);
+
+      // Axios.post('https://httpbin.org/anything', data).then(res=>console.log(res)).catch(err=>console.log(err));
+
+      Axios.post("http://localhost:3001/api/insertRecipe",data).then(res=>console.log(res));
+      navigate(`/createrecipe/addingredient${capitalizeFirstLetter(recipe_name.trim())}`)
     }
 
   return (
@@ -66,6 +79,13 @@ const CreateRecipe = () => {
                     <option value="Chinese">Chinese Classics</option>
                 </select>
             </div>
+            <div className={classesRIF.inputfield}>
+              <label for="image">Recipe image</label>
+              <input type="file" name="image" id='image' onChange={event=>{
+                setImage(event.target.files[0])
+              }}></input>
+            </div>
+            {/* <input type="hidden" name="image_name" id='image_name' value={image_name}></input> */}
         </form>
     </div>
     {/* RECIPEINFOFORM */}

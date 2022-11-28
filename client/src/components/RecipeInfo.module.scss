@@ -22,10 +22,12 @@
     border-radius: .5rem;
 
     .recipeImage {
-      height: 250px;
       width: 100%;
       border-radius: .5rem .5rem 0 0;
-      background-color: $darkGrey;
+      img{
+        width: 100%;
+        border-radius: .5rem .5rem 0 0;
+      }
     }
 
     .recipeDescription {

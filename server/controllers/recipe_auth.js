@@ -14,23 +14,23 @@ const db = mysql.createPool({
   port: process.env.DATABASE_PORT,
 });
 
-exports.addRecipe = (req, res) => {
-  const recipe_id = req.body.recipe_id;
-  const recipe_name = capitalizeFirstLetter(req.body.recipe_name);
-  const rec_name = recipe_name.trim()
-  const category = req.body.category;
-  const recipe_instruction = req.body.recipe_instruction;
-  const cust_id = req.body.cust_id;
+// exports.addRecipe = (req, res) => {
+//   const recipe_id = req.body.recipe_id;
+//   const recipe_name = capitalizeFirstLetter(req.body.recipe_name);
+//   const rec_name = recipe_name.trim()
+//   const category = req.body.category;
+//   const recipe_instruction = req.body.recipe_instruction;
+//   const cust_id = req.body.cust_id;
 
-  db.query(
-    "INSERT INTO recipe (recipe_id, recipe_name, category, instructions, cust_id) VALUES(?, ?, ?, ?, ?);",
-    [recipe_id, rec_name, category, recipe_instruction,cust_id],
-    (err, result) => {
-      console.log(err);
-    }
-  );
-  console.log(recipe_id);
-};
+//   db.query(
+//     "INSERT INTO recipe (recipe_id, recipe_name, category, instructions, cust_id) VALUES(?, ?, ?, ?, ?);",
+//     [recipe_id, rec_name, category, recipe_instruction,cust_id],
+//     (err, result) => {
+//       console.log(err);
+//     }
+//   );
+//   console.log(recipe_id);
+// };
 
 exports.addIngredient = (req, res) => {
   const recipe_name = req.body.recipe_name;
@@ -128,7 +128,7 @@ exports.cancelRecipe = (req, res) => {
 
 exports.displayRecipe = (req, res) => {
   db.query(
-    "SELECT recipe_id, recipe_name, category,instructions, username FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id",
+    "SELECT recipe_id, recipe_name, category,instructions, username, image_name FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id",
     (err, result) => {
       res.send(result);
     }
@@ -139,7 +139,7 @@ exports.displayRecipe1 = (req, res) => {
   const recipe_id = req.params.id;
 
   db.query(
-    `SELECT recipe_id, recipe_name, category,instructions, username FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id WHERE recipe_id = ${recipe_id}`,
+    `SELECT recipe_id, recipe_name, category,instructions, username, image_name FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id WHERE recipe_id = ${recipe_id}`,
     (err, result) => {
       res.send(result);
     }

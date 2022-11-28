@@ -8,8 +8,6 @@ const Recipe = () => {
 
   const params = useParams();
 
-  console.log(params);
-
   const [recipeList1,setRecipeList1] = useState([]);
   const [ingredient,setingredient] = useState([]);
 
@@ -27,7 +25,7 @@ const Recipe = () => {
     setingredient(response.data)
 
     },[]);   
-  },[]);
+  },);
 
 
   return (

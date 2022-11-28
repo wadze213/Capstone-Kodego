@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import classes from './forms.module.scss';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const LogInForm = () => {
   const [username,setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [formAlert, setFormAlert] = useState("All fields are mandatory")
 
   Axios.defaults.withCredentials = true;
