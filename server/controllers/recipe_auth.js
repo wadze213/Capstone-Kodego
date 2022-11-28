@@ -2,6 +2,10 @@ const mysql = require("mysql");
 
 require("dotenv").config();
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const db = mysql.createPool({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
@@ -12,14 +16,15 @@ const db = mysql.createPool({
 
 exports.addRecipe = (req, res) => {
   const recipe_id = req.body.recipe_id;
-  const recipe_name = req.body.recipe_name;
+  const recipe_name = capitalizeFirstLetter(req.body.recipe_name);
+  const rec_name = recipe_name.trim()
   const category = req.body.category;
   const recipe_instruction = req.body.recipe_instruction;
   const cust_id = req.body.cust_id;
 
   db.query(
     "INSERT INTO recipe (recipe_id, recipe_name, category, instructions, cust_id) VALUES(?, ?, ?, ?, ?);",
-    [recipe_id, recipe_name, category, recipe_instruction,cust_id],
+    [recipe_id, rec_name, category, recipe_instruction,cust_id],
     (err, result) => {
       console.log(err);
     }
@@ -30,23 +35,24 @@ exports.addRecipe = (req, res) => {
 exports.addIngredient = (req, res) => {
   const recipe_name = req.body.recipe_name;
   const RecName = Object.values(recipe_name);
-  const ingredient_name = req.body.ingredient_name;
+  const ingredient_name = capitalizeFirstLetter(req.body.ingredient_name);
+  const ing_name = ingredient_name.trim();
   const unit_id = parseInt(req.body.unit_id);
   const quantity = parseInt(req.body.quantity);
 
   db.query(
     "SELECT ingredient_name FROM ingredient WHERE ingredient_name = ?",
-    ingredient_name,
+    ing_name,
     async function (err, result) {
       if (!result.length) {
         db.query(
           "INSERT INTO ingredient (ingredient_name) VALUES(?)",
-          ingredient_name,
+          ing_name,
           (err, result) => {
             if (!err) {
               db.query(
                 "INSERT INTO recipe_ingredient (recipe_id, ingredient_id, unit_id, quantity) VALUES ((SELECT recipe_id FROM recipe WHERE recipe_name = ?), (SELECT ingredient_id FROM ingredient WHERE ingredient_name = ?), ?, ?);",
-                [RecName, ingredient_name, unit_id, quantity],
+                [RecName, ing_name, unit_id, quantity],
                 (err, result) => {
                   console.log(err);
                 }
@@ -59,7 +65,7 @@ exports.addIngredient = (req, res) => {
       } else {
         db.query(
           "INSERT INTO recipe_ingredient (recipe_id, ingredient_id, unit_id, quantity) VALUES ((SELECT recipe_id FROM recipe WHERE recipe_name = ?), (SELECT ingredient_id FROM ingredient WHERE ingredient_name = ?), ?, ?);",
-          [RecName, ingredient_name, unit_id, quantity],
+          [RecName, ing_name, unit_id, quantity],
           (err, result) => {
             console.log(err);
           }
