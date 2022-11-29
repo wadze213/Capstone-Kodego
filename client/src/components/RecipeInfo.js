@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import classes from "./RecipeInfo.module.scss";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
@@ -6,6 +6,16 @@ import Axios from "axios";
 
 const RecipeInfo = ({ title, ingredient, recipeSample3 }) => {
   // const [menu, setMenu] = useState([]);
+
+  const [custId, setCustId] = useState(1);
+
+  useEffect(()=>{
+    Axios.get("http://localhost:3001/api/loginuser").then((response) => {
+        if(response.data.loginStatus === true){
+            setCustId(response.data.user[0].cust_id)
+        }
+      });
+  },[]);
 
   const handleClick = (param) => {
     console.log(recipeSample3);
@@ -15,7 +25,7 @@ const RecipeInfo = ({ title, ingredient, recipeSample3 }) => {
   const addToMenu = (recipe_id) => {
     console.log(recipe_id);
     const url = `http://localhost:3001/api/insertCart`;
-    const body = { recipe_id: recipe_id };
+    const body = { recipe_id: recipe_id, cust_id: custId };
 
     Axios.post(url, body).then((response) => {
       console.log(response.data);

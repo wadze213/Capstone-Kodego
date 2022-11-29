@@ -159,14 +159,16 @@ exports.ingredient = (req, res) => {
 
 exports.insertCart = (req, res) => {
   const recipe_id = req.body.recipe_id;
-
+  const cust_id = req.body.cust_id;
   console.log(recipe_id);
   db.query(
-    "INSERT INTO CART (recipe_id) VALUES (?)",
-    recipe_id,
+    "INSERT INTO CART (recipe_id, cust_id) VALUES (?,?)",
+    [recipe_id,cust_id],
     (err, result) => {
       if (!err) {
         res.send(result);
+      }else{
+        console.log(err)
       }
     }
   );

@@ -20,7 +20,7 @@ const UserMenu = () => {
     Axios.get(url).then((response) => {
       setRecipeList1(response.data);
     }, []);
-  }, []);
+  });
 
   return (
     <div>
