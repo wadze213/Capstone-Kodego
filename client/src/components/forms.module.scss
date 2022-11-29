@@ -1,86 +1,148 @@
-@import '../styles/variables.scss';
+@import "../styles/variables.scss";
 
-.container{
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: $lightGrey;
+  border-radius: 0.5rem;
+  padding: $padding;
+  margin: $margin;
+  .formtitle {
+    color: $primaryDark;
+    font-size: 1.5rem;
+  }
+  .formcontainer {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: $lightGrey;
-    border-radius: .5rem;
-    padding: $padding;
-    margin: $margin;
-    .formtitle{
-        color: $primaryDark;
-        font-size: 1.5rem;
+    .formAlerts {
+      padding: 0.5rem;
+      background-color: $darkGrey;
+      border-radius: 0.5rem;
+      color: $white;
     }
-    .formcontainer{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        .formAlerts{
-            padding: .5rem;
-            background-color: $darkGrey;
-            border-radius: .5rem;
-            color: $white;
-        }
-        .inputfield{
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-            label{
-                font-weight: bold;
-            }
-            input{
-                border: 1px solid $white;
-                font-size: 1rem;
-                padding: 5px;
-                border-radius: .5rem;
-                &::placeholder{
-                    color: $charcoal;
-                }
-                &:focus{
-                    border: 1px solid $primaryDark;
-                }
-            }
-            select{
-                border: 1px solid $white;
-                font-size: 1rem;
-                padding: 5px;
-                border-radius: .5rem;
-                color: $charcoal;
-            }
-            textarea{
-                border: 1px solid $white;
-                font-size: 1rem;
-                padding: 5px;
-                border-radius: .5rem;
-                &::placeholder{
-                    color: $charcoal;
-                }
-                &:focus{
-                    border: 1px solid $primaryDark;
-                }
-            }
-        }
-        input[type="submit"]{
-            background-color: $primaryDark;
-            padding: .5rem;
-            font-size: 1rem;
-            font-weight: bold;
-            color: $white;
-            border: none;
-            border-radius: .5rem;
-        }
-        .ingredientlist{
-            display: flex;
-            flex-wrap: wrap;
-            gap: .5rem;
-            .ingredientContainer{
-                display: flex;
-                background-color: $darkGrey;
-                padding: .2rem;
-                border-radius: .5rem;
-                color: $white;
-            }
-        }
+
+    .buttonCreate {
+      position: relative;
+      padding: 10px 15px;
+      font-size: 15px;
+      line-height: 1.5;
+      border-radius: $borderRadius;
+      color: #fff;
+      background-color: #36bf06;
+      border: 1px solid #36bf06;
+      overflow: hidden;
+      width: 70%;
     }
+    .buttoncancel {
+      position: relative;
+      padding: $padding;
+      font-size: 15px;
+      line-height: 1.5;
+      border-radius: $borderRadius;
+      color: #fff;
+      background-color: #a3a3a3;
+      border: 0;
+      overflow: hidden;
+    }
+    .butinput {
+      cursor: pointer;
+      position: absolute;
+      left: 8%;
+      top: 68.4%;
+      transform: scale(1);
+      opacity: 0;
+    }
+
+    .inputfield {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      label {
+        font-weight: bold;
+      }
+      input {
+        border: 1px solid $white;
+        font-size: 1rem;
+        padding: 5px;
+        border-radius: 0.5rem;
+        &::placeholder {
+          color: $charcoal;
+        }
+        &:focus {
+          border: 1px solid $primaryDark;
+        }
+      }
+      select {
+        border: 1px solid $white;
+        font-size: 1rem;
+        padding: 5px;
+        border-radius: 0.5rem;
+        color: $charcoal;
+      }
+      textarea {
+        border: 1px solid $white;
+        font-size: 1rem;
+        padding: 5px;
+        border-radius: 0.5rem;
+        &::placeholder {
+          color: $charcoal;
+        }
+        &:focus {
+          border: 1px solid $primaryDark;
+        }
+      }
+    }
+    input[type="submit"] {
+      background-color: $primaryDark;
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: $white;
+      border: none;
+      border-radius: 0.5rem;
+    }
+    .ingredientlist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .buttonX {
+      color: red;
+      display: flex;
+      justify-self: end;
+      margin: auto 10px;
+    }
+  }
+  .ingredientContainer {
+    padding: 0.2rem;
+    border-radius: 0.5rem;
+    color: $charcoal;
+  }
+  .ingredientDisplayContainer {
+    display: grid;
+    grid-template-columns: 150px 150px;
+    background-color: #fff;
+    border: 1px solid $white;
+    padding: 5px;
+    border-radius: 0.5rem;
+    font-size: 15px;
+  }
+  .buttoncontainer {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  .buttonUpload {
+    position: relative;
+    padding: 10px 15px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: $borderRadius;
+    color: #36bf06;
+    background-color: #fff;
+    border: 1px solid #36bf06;
+    overflow: hidden;
+  }
 }

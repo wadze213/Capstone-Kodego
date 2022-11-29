@@ -5,7 +5,8 @@ import classes from './pagesClasses.module.scss'
 import classesRIF from '../components/forms.module.scss';
 import classesINST from '../components/forms.module.scss';
 import Axios from 'axios'
-import UserHeader from '../components/UserHeader'
+import UserHeader from '../components/UserHeader';
+import { FaUpload } from 'react-icons/fa';
 
 const CreateRecipe = () => {
 
@@ -81,9 +82,11 @@ const CreateRecipe = () => {
             </div>
             <div className={classesRIF.inputfield}>
               <label for="image">Recipe image</label>
-              <input type="file" name="image" id='image' onChange={event=>{
+              <button type='button' className={classesRIF.buttonUpload}><FaUpload />  Upload File</button>
+              <input type="file" name="image" id='image'className={classesRIF.butinput} onChange={event=>{
                 setImage(event.target.files[0])
               }}></input>
+               
             </div>
             {/* <input type="hidden" name="image_name" id='image_name' value={image_name}></input> */}
         </form>
