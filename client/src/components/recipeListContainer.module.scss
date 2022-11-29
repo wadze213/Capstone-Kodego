@@ -1,51 +1,52 @@
-@import '../styles/variables.scss';
+@import "../styles/variables.scss";
 
-.container{
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: $lightGrey;
+  border-radius: 0.5rem;
+  padding: $padding;
+  margin: $margin;
+  box-shadow: 0px 0px 7px $shadowcolor;
+  .listTitle {
+    color: $primaryDark;
+    font-size: 1.5rem;
+  }
+  .recipeCard {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    background-color: $lightGrey;
-    border-radius: .5rem;
-    padding: $padding;
-    margin: $margin;
-    box-shadow: 0px 0px 7px $shadowcolor;
-    .listTitle{
-        color: $primaryDark;
-        font-size: 1.5rem;
+    background-color: $white;
+    border-radius: 0.5rem;
+    .recipeImage {
+      height: 100px;
+      width: 100px;
+      border-radius: 0.5rem 0 0 0.5rem;
+      background-color: $darkGrey;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem 0 0 0.5rem;
+      }
     }
-    .recipeCard{
-        display: flex;
-        background-color: $white;
-        border-radius: .5rem;
-        .recipeImage{
-            height: 100px;
-            width: 100px;
-            border-radius: .5rem 0 0 .5rem;
-            background-color: $darkGrey;
-            img{
-                width: 100%;
-                border-radius: .5rem 0 0 .5rem;
-            }
-        }
-        .recipeDescription{
-            padding: .25rem 1rem;
-            font-size: .7rem;
-            display: flex;
-            flex-direction: column;
-            h4{
-                font-size: .9rem;
-            }
-            .recipeCategory{
-                color: $alert;
-                font-weight: 500;
-            }
-        }
+    .recipeDescription {
+      padding: 0.25rem 1rem;
+      font-size: 0.7rem;
+      display: flex;
+      flex-direction: column;
+      h4 {
+        font-size: 0.9rem;
+      }
+      .recipeCategory {
+        color: $alert;
+        font-weight: 500;
+      }
     }
+  }
 }
-.remove{
-    color: $danger;
-    text-decoration: underline;
-    &:hover{
-        cursor: pointer;
-    }
+.remove {
+  color: $danger;
+  text-decoration: underline;
+  &:hover {
+    cursor: pointer;
+  }
 }

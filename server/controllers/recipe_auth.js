@@ -128,7 +128,7 @@ exports.cancelRecipe = (req, res) => {
 
 exports.displayRecipe = (req, res) => {
   db.query(
-    "SELECT recipe_id, recipe_name, category,instructions, username, image_name FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id",
+    "SELECT recipe_id, recipe_name, category,instructions, username,image_name FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id",
     (err, result) => {
       res.send(result);
     }
@@ -139,19 +139,55 @@ exports.displayRecipe1 = (req, res) => {
   const recipe_id = req.params.id;
 
   db.query(
-    `SELECT recipe_id, recipe_name, category,instructions, username, image_name FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id WHERE recipe_id = ${recipe_id}`,
+    `SELECT recipe_id, recipe_name, category,instructions, username,image_name FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id WHERE recipe_id = ${recipe_id}`,
     (err, result) => {
       res.send(result);
     }
   );
 };
+
 exports.ingredient = (req, res) => {
   const ingredient_id = req.params.id;
 
   db.query(
-    `SELECT  ri.quantity , mu.unit_name  , i.ingredient_name  FROM recipe_ingredient ri JOIN unit mu on mu.unit_id= ri.unit_id JOIN ingredient i on i.ingredient_id = ri.ingredient_id WHERE recipe_id = ${ingredient_id}`,
+    `SELECT ri.ingredient_id, ri.quantity , mu.unit_name  , i.ingredient_name  FROM recipe_ingredient ri JOIN unit mu on mu.unit_id= ri.unit_id JOIN ingredient i on i.ingredient_id = ri.ingredient_id WHERE recipe_id = ${ingredient_id}`,
     (err, result) => {
       res.send(result);
     }
   );
+};
+
+exports.insertCart = (req, res) => {
+  const recipe_id = req.body.recipe_id;
+
+  console.log(recipe_id);
+  db.query(
+    "INSERT INTO CART (recipe_id) VALUES (?)",
+    recipe_id,
+    (err, result) => {
+      if (!err) {
+        res.send(result);
+      }
+    }
+  );
+};
+
+exports.DisplayMenu = (req, res) => {
+  db.query(
+    `SELECT recipe.recipe_id, recipe.recipe_name, recipe.category,recipe.instructions, customers.username ,recipe.image_name
+    FROM cart INNER JOIN recipe ON recipe.recipe_id = cart.recipe_id
+    INNER JOIN customers  ON recipe.cust_id= customers.cust_id`,
+    (err, result) => {
+      res.send(result);
+      console.log(result);
+    }
+  );
+};
+
+exports.delRecipe = (req, res) => {
+  const recipe_id = req.params.recipe_id;
+  console.log(recipe_id);
+  db.query("DELETE FROM cart WHERE recipe_id =?", recipe_id, (err, result) => {
+    console.log(result);
+  });
 };
