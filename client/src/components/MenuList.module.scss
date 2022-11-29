@@ -53,6 +53,12 @@
   text-align: right;
   padding: 30px 30px;
   cursor: pointer;
+  align-self: end;
+}
+@media only screen and (min-width: 376px) {
+  .remmove {
+    margin-left: 70%;
+  }
 }
 
 .recipeImage {
