@@ -30,7 +30,9 @@ cd..
 
 2. Start mySQL server
 
-3. Start client
+3. Start client  
+
+In a new terminal:  
 
 ```powershell
 cd .\client\
@@ -39,6 +41,8 @@ cd..
 ```
 
 4. Start server
+
+In a new terminal:  
 
 ```powershell
 cd .\server\
