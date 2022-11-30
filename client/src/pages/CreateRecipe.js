@@ -88,6 +88,7 @@ const CreateRecipe = () => {
               }}></input>
                
             </div>
+            
             {/* <input type="hidden" name="image_name" id='image_name' value={image_name}></input> */}
         </form>
     </div>
