@@ -84,8 +84,7 @@ exports.loginUser=(req,res)=>{
                 if(response){
                     // Creating cookie and session
                     req.session.user = result;
-                    res.send({message: "Succesfully logged in"});
-                    res.send({redirect: true});
+                    res.send({message: "Succesfully logged in", redirect: true});
                 }else{
                     res.send({message: "No matching username-passsword combination"})
                 }
