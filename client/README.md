@@ -26,8 +26,7 @@ Keep in mind the project is a collaboration as whole. Attributed work only means
 
 ### Styles
 
-- [variables.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/styles/variables.scss)  
-
+- [variables.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/styles/variables.scss)
 - [forms.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/forms.module.scss)
 - [userHeader.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/userHeader.module.scss)
 - [paxCount.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/paxCount.module.scss)
