@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import classes from "./forms.module.scss";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import { RiDeleteBack2Line } from "react-icons/ri";
 import Axios from "axios";
 import swal from "sweetalert";
 
@@ -144,33 +144,35 @@ const RecipeIngredientsForm = () => {
             <option value={8}>Cups</option>
           </select>
         </div>
-        <input
-          type="submit"
-          name="ingredientSubmit"
-          value="Add ingredient"
-          onClick={submitIngredient}
-        ></input>
+
+        <button className={classes.buttonUpload} onClick={submitIngredient}>
+          Add ingredient
+        </button>
         <div className={classes.ingredientlist}>
           {recipeInstList.map((val) => {
             return (
-              <div className={classes.ingredientContainer}>
-                <p>
-                  {val.ingredient_name}, {val.quantity} {val.unit_name}.
-                </p>
-                <button
+              <div className={classes.ingredientDisplayContainer}>
+                <div className={classes.ingredientContainer}>
+                  <p>
+                    {val.ingredient_name}, {val.quantity} {val.unit_name}
+                  </p>
+                </div>
+                <div
+                  className={classes.buttonX}
                   onClick={(event) => {
                     event.preventDefault();
                     deleteIngredient(val.ingredient_name);
                   }}
                 >
-                  <HighlightOffIcon />
-                </button>
+                  <RiDeleteBack2Line />
+                </div>
               </div>
             );
           })}
         </div>
-        <div>
+        <div className={classes.buttoncontainer}>
           <button
+            className={classes.buttoncancel}
             onClick={(event) => {
               event.preventDefault();
               cancelRec();
@@ -179,6 +181,7 @@ const RecipeIngredientsForm = () => {
             Cancel
           </button>
           <button
+            className={classes.buttonCreate}
             onClick={() => {
               navigate("/userHome");
               SubmitRecipe();

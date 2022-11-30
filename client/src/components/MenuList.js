@@ -42,6 +42,7 @@ const RecipeListContainer = ({ recipeSample }) => {
                 alt="Recipe img"
               ></img>
             </div>
+
             <div className={classes.recipeDescription}>
               <h4>{recipe.recipe_name}</h4>
               <p className={classes.recipeCategory}>{recipe.category}</p>
