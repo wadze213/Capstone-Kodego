@@ -48,7 +48,9 @@ const CreateRecipe = () => {
 
       // Axios.post('https://httpbin.org/anything', data).then(res=>console.log(res)).catch(err=>console.log(err));
 
-      Axios.post("http://localhost:3001/api/insertRecipe",data).then(res=>console.log(res));
+      Axios.post("http://localhost:3001/api/insertRecipe",data).then(
+        // res=>console.log(res)
+        );
       navigate(`/createrecipe/addingredient${capitalizeFirstLetter(recipe_name.trim())}`)
     }
 

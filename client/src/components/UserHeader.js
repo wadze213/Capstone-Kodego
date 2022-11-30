@@ -9,7 +9,7 @@ const UserHeader = () => {
 
     useEffect(()=>{
             Axios.get("http://localhost:3001/api/loginuser").then((response) => {
-                console.log(response)
+                // console.log(response)
                 if(response.data.loginStatus === true){
                     setLoginStatus(`Welcome, ${response.data.user[0].username}`)
                 }else{

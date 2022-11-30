@@ -13,7 +13,7 @@ const UserHome = () => {
   useEffect(() => {
     Axios.get("http://localhost:3001/api/displayRecipe").then((response) => {
       setRecipeList(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     });
   }, []);
 

@@ -11,7 +11,7 @@ const RecipeListContainer = ({ recipeSample }) => {
   const delRecipe = (recipe) => {
     Axios.delete(`http://localhost:3001/api/delRecipe/${recipe}`);
 
-    console.log(recipe);
+    // console.log(recipe);
 
     swal({
       title: "Are you sure?",

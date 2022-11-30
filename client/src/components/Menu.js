@@ -10,7 +10,7 @@ const Menu = () => {
   useEffect(() => {
     Axios.get("http://localhost:3001/api/DisplayMenu").then((response) => {
       setMenu(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     });
   }, []);
 

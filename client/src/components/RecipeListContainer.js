@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const RecipeListContainer = ({ title, recipeSample, remove }) => {
   const handleClick = (param) => {
-    console.log(param);
+    // console.log(param);
     navigate(`/recipe/${param}`);
   };
 

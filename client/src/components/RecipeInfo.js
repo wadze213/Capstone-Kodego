@@ -18,17 +18,17 @@ const RecipeInfo = ({ title, ingredient, recipeSample3 }) => {
   },[]);
 
   const handleClick = (param) => {
-    console.log(recipeSample3);
+    // console.log(recipeSample3);
     navigate(`/recipe/${param}`);
   };
 
   const addToMenu = (recipe_id) => {
-    console.log(recipe_id);
+    // console.log(recipe_id);
     const url = `http://localhost:3001/api/insertCart`;
     const body = { recipe_id: recipe_id, cust_id: custId };
 
     Axios.post(url, body).then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       navigate(`/usermenu`);
     }, []);
 

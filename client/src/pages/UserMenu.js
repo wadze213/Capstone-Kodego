@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import BottomNav from "../components/BottomNav";
-import RecipeListContainer from "../components/RecipeListContainer";
 import PaxCount from "../components/PaxCount";
 import classes from "./pagesClasses.module.scss";
 import UserHeader from "../components/UserHeader";
 import Menu from "../components/Menu";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
-import swal from "sweetalert";
 
 const UserMenu = () => {
   const [recipeList1, setRecipeList1] = useState([]);

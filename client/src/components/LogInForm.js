@@ -1,25 +1,30 @@
 import React, { useState} from 'react'
 import classes from './forms.module.scss';
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 const LogInForm = () => {
   const [username,setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [formAlert, setFormAlert] = useState("All fields are mandatory")
 
+  // Login function 
   Axios.defaults.withCredentials = true;
   let login = (e) => {
     e.preventDefault();
-    console.log(username,password)
+    // console.log(username,password)
     Axios.post('http://localhost:3001/api/loginuser',
     {
       username: username,
       password: password
     }).then((response)=>{
-      console.log(response.data.message);
+      // console.log(response.data.message);
       setFormAlert(response.data.message);
+      if(response.data.redirect === true){
+        navigate("/userhome")
+      }
 
     })
   }

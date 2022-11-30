@@ -9,13 +9,13 @@ const PaxCount = () => {
     let [count, setCount] = useState(1);
     let increaseCount = () => {
         setCount(count+1);
-        console.log('click detected')
+        // console.log('click detected')
     }
     let decreaseCount = () => {
         if(count !== 1){
             setCount(count-1)
         }else{
-            console.log('count cannot be lower than one')
+            // console.log('count cannot be lower than one')
         }
     }
 

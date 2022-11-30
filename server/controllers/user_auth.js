@@ -85,6 +85,7 @@ exports.loginUser=(req,res)=>{
                     // console.log("Login: Success:");
                     // console.log(result);
                     res.send({message: "Succesfully logged in"});
+                    res.send({redirect: true});
                 }else{
                     console.log("Login: No matching username-passsword combination")
                     res.send({message: "No matching username-passsword combination"})

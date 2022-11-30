@@ -17,7 +17,7 @@ const RegisterForm = () => {
 
     let register = (e) => {
         e.preventDefault();
-        console.log(password, confirmPassword)
+        // console.log(password, confirmPassword)
         Axios.post('http://localhost:3001/api/registeruser',
         {
             username: username,
@@ -29,7 +29,7 @@ const RegisterForm = () => {
             region: region,
             country: country
         }).then((response)=>{
-            console.log(response.data.message);
+            // console.log(response.data.message);
             setFormAlert(response.data.message)
         })
     }
