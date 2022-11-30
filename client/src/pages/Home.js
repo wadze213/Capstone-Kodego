@@ -9,7 +9,6 @@ import step2 from '../img/Step 2.png'
 import step3 from '../img/Step 3.png'
 import step4 from '../img/Step 4.png'
 import UserHeader from '../components/UserHeader'
-import classes from "../components/forms.module.scss";
 
 const Home = () => {
 
