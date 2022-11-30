@@ -5,11 +5,10 @@ import Axios from "axios";
 import swal from "sweetalert";
 
 const RecipeListContainer = ({ recipeSample }) => {
+
+  // Delete from menu function
   const delRecipe = (recipe) => {
     Axios.delete(`http://localhost:3001/api/delRecipe/${recipe}`);
-
-    // console.log(recipe);
-
     swal({
       title: "Are you sure?",
       text: "Once deleted,the Recipe will be removed from your Menu List.",

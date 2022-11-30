@@ -13,6 +13,7 @@ const db = mysql.createPool({
     port: process.env.DATABASE_PORT
 })
 
+// Register user backend function
 exports.registerUser=(req,res)=>{
     const username = req.body.username;
     const email = req.body.email;
@@ -23,37 +24,36 @@ exports.registerUser=(req,res)=>{
     const region = req.body.region;
     const country = req.body.country;
     
+    // DB query to verify if username exists
     db.query("SELECT username FROM customers WHERE username = ?",[username], (err,result)=>{
         if(err){
             console.log("Registration: Username error: " +err)
         }else{
             if(result.length>0){
-                console.log("Registration: Username exists")
-                console.log(result)
                 res.send({message: "Username already exists"})
             }else{
+                // DB query to verify if email exists
                 db.query("SELECT email FROM customers WHERE email = ?", [email], (err,result)=>{
                     if(err){
                         console.log("Registration: Email error" +err)
                     }else{
                         if(result.length > 0){
-                            console.log("Registration: Email exists")
                             res.send({message: "Email already exists"})
+                        // Condition to verify passwords match
                         }else if(password !== confirm_password){
-                            console.log("Registration: Passwords don't match")
                             res.send({message: "Passwords don't match"})
                         }else{
+                            // Password hashing
                             bcrypt.hash(password, saltrounds, (err, hash) => {
                                 if(err){
                                     console.log("Registratrion: Hashing error")
                                     console.log(err)
                                 }else{
+                                    // Creating user and adding it to databse
                                     db.query("INSERT INTO customers (username,email,password,address_one,address_two,region,country) VALUES(?,?,?,?,?,?,?)",[username,email,hash,address_one,address_two,region,country],(err,result)=>{
                                         if(err){
                                             console.log(`Registration: Insert error` + err)
                                         }else{
-                                            console.log(`Registration: Success` +result)
-                                            console.log(result)
                                             res.send({message: "Account created"})
                                         }
                                     })
@@ -68,38 +68,36 @@ exports.registerUser=(req,res)=>{
     })    
 }
 
+// Login user backend function
 exports.loginUser=(req,res)=>{
     const username = req.body.username;
     const password = req.body.password;
 
+    // DB query to verify if username exists
     db.query("SELECT * FROM customers WHERE username = ?",[username],(err,result)=>{
         if(err){
             console.log("Login: Error" +err)
-
         }
         if(result.length > 0){
+            // Compare hashed passwords
             bcrypt.compare(password, result[0].password,(err,response)=>{
                 if(response){
+                    // Creating cookie and session
                     req.session.user = result;
-                    console.log(req.session.user);
-                    // console.log("Login: Success:");
-                    // console.log(result);
                     res.send({message: "Succesfully logged in"});
                     res.send({redirect: true});
                 }else{
-                    console.log("Login: No matching username-passsword combination")
                     res.send({message: "No matching username-passsword combination"})
                 }
             })
-            
         }else{
-            console.log("Login: User does not exist")
             res.send({message: "Username does not exist"})
 
         }
     })    
 }
 
+// Login status backend function
 exports.loginStatus=(req,res)=>{
     if(req.session.user){
         res.send({loginStatus: true, user: req.session.user})

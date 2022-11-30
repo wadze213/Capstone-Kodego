@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 const PaxCount = () => {
 
+    //Pax counter function
     let [count, setCount] = useState(1);
     let increaseCount = () => {
         setCount(count+1);

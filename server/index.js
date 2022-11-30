@@ -28,6 +28,8 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true}));
+
+// Cookies setup
 app.use(session({
   key: "userId",
   secret: process.env.COOKIE_SECRET,
@@ -38,11 +40,13 @@ app.use(session({
   }
 }));
 
+// Back end will interat through the /api endpoint
 app.use("/api", require("./routes/auth"))
 
 app.listen(port,()=>{
     console.log(`Server started at ${port}`);
     db.connect((err)=>{
+        // Db connection verification in index to detect connection errors early
         if (err){
             console.log(`mySQL error. ERROR: ` +err)
         }else{

@@ -3,18 +3,21 @@ import classes from "./recipeListContainer.module.scss";
 import { useNavigate } from "react-router-dom";
 
 const RecipeListContainer = ({ title, recipeSample, remove }) => {
-  const handleClick = (param) => {
-    // console.log(param);
-    navigate(`/recipe/${param}`);
-  };
 
   let navigate = useNavigate();
 
+  //Redirect to recipe info function
+  const handleClick = (param) => {
+    navigate(`/recipe/${param}`);
+  };
+
+  // Conditional function to display remove option or not
   let displayRemove = (remove) => {
     if (remove === true) {
       return <p className={classes.remove}>Remove from menu</p>;
     }
   };
+  
   return (
     <div className={classes.container}>
       <h1 className={classes.listTitle}>{title}</h1>

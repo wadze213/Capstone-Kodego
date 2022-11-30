@@ -17,6 +17,7 @@ const RecipeIngredientsForm = () => {
   const { recipe_name } = useParams();
   const [recipeInstList, setRecipeList] = useState([]);
 
+  //Submit recipe ingredients function
   const submitIngredient = (event) => {
     event.preventDefault();
     Axios.post("http://localhost:3001/api/insertIngredient", {
@@ -25,7 +26,6 @@ const RecipeIngredientsForm = () => {
       unit_id: unit_id,
       quantity: quantity,
     });
-
     swal("Ingredient added  successfully", {
       buttons: false,
       icon: "success",
@@ -35,6 +35,7 @@ const RecipeIngredientsForm = () => {
     });
   };
 
+  //Get recipe ingredients function
   useEffect(() => {
     Axios.get("http://localhost:3001/api/getIngredient", {
       params: {
@@ -45,6 +46,7 @@ const RecipeIngredientsForm = () => {
     });
   }, [recipe_name]);
 
+  //Delete recipe ingredient function
   const deleteIngredient = (ingredient) => {
     swal({
       title: "Are you sure?",
@@ -67,6 +69,7 @@ const RecipeIngredientsForm = () => {
     });
   };
 
+  //Cancel recipe creation function
   const cancelRec = () => {
     swal({
       title: "Are you sure?",
@@ -89,6 +92,8 @@ const RecipeIngredientsForm = () => {
       }, 2000);
     });
   };
+
+  //Submit recipe function
   const SubmitRecipe = () => {
     swal("Ingredient added  successfully", {
       buttons: false,

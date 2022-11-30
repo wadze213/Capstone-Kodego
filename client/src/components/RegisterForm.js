@@ -15,6 +15,7 @@ const RegisterForm = () => {
 
     const [formAlert, setFormAlert] = useState("All fields are mandatory")
 
+    //Register user function (validation happens in backend)
     let register = (e) => {
         e.preventDefault();
         // console.log(password, confirmPassword)

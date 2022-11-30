@@ -5,10 +5,10 @@ import swal from "sweetalert";
 import Axios from "axios";
 
 const RecipeInfo = ({ title, ingredient, recipeSample3 }) => {
-  // const [menu, setMenu] = useState([]);
-
+  let navigate = useNavigate();
   const [custId, setCustId] = useState(1);
 
+  //Getting current user cust_id
   useEffect(()=>{
     Axios.get("http://localhost:3001/api/loginuser").then((response) => {
         if(response.data.loginStatus === true){
@@ -17,35 +17,24 @@ const RecipeInfo = ({ title, ingredient, recipeSample3 }) => {
       });
   },[]);
 
+  //Handling click to redirect to recipe details
   const handleClick = (param) => {
-    // console.log(recipeSample3);
     navigate(`/recipe/${param}`);
   };
 
+  // Add to mennu function
   const addToMenu = (recipe_id) => {
-    // console.log(recipe_id);
     const url = `http://localhost:3001/api/insertCart`;
     const body = { recipe_id: recipe_id, cust_id: custId };
-
     Axios.post(url, body).then((response) => {
-      // console.log(response.data);
       navigate(`/usermenu`);
     }, []);
-
     swal("Recipe added to Menu successfully", {
       buttons: false,
       icon: "success",
       timer: 2000,
     });
   };
-
-  // useEffect(addToMenu, []);
-
-  // useEffect(()=>{
-
-  // },[]);
-
-  let navigate = useNavigate();
 
   return (
     <div className={classes.container}>

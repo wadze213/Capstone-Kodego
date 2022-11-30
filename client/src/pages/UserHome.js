@@ -10,10 +10,10 @@ const UserHome = () => {
 
   const [recipeList, setRecipeList] = useState([]);
 
+  //Fetch all recipes to display in list
   useEffect(() => {
     Axios.get("http://localhost:3001/api/displayRecipe").then((response) => {
       setRecipeList(response.data);
-      // console.log(response.data);
     });
   }, []);
 

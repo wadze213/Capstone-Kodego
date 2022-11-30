@@ -7,6 +7,7 @@ const UserHeader = () => {
 
     Axios.defaults.withCredentials = true;
 
+    //Get current user loginStatus and user info
     useEffect(()=>{
             Axios.get("http://localhost:3001/api/loginuser").then((response) => {
                 // console.log(response)

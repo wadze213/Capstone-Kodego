@@ -18,13 +18,16 @@ const CreateRecipe = () => {
     const [image, setImage] = useState();
     const [image_name, setImageName] = useState("");
 
+    //Function that trims and capitalizes first letter of ingredients & recipe name
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
     }
+    //Function to format imagename
     function formatImageName(string){
       return string.split(" ").join("").toLowerCase();
     }
 
+    //Function to fetch current user cust_id default to 1 if not logged in
     useEffect(()=>{
       Axios.get("http://localhost:3001/api/loginuser").then((response) => {
           if(response.data.loginStatus === true){
@@ -33,7 +36,7 @@ const CreateRecipe = () => {
         });
     },[]);
 
-
+    //Submit recipe function
     let submitRecipe=()=>{
       let originalName = document.getElementById('image').value;
       setImageName(formatImageName(originalName));
@@ -45,8 +48,6 @@ const CreateRecipe = () => {
       data.append("cust_id", custId);
       data.append("image_name", image_name)
       data.append("image",image);
-
-      // Axios.post('https://httpbin.org/anything', data).then(res=>console.log(res)).catch(err=>console.log(err));
 
       Axios.post("http://localhost:3001/api/insertRecipe",data).then(
         // res=>console.log(res)

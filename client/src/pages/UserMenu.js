@@ -9,9 +9,9 @@ import { useParams } from "react-router-dom";
 
 const UserMenu = () => {
   const [recipeList1, setRecipeList1] = useState([]);
-
   const params = useParams();
 
+  //Fetch menu recipes data
   useEffect(() => {
     const url = `http://localhost:3001/api/displayRecipe1/${params.id}`;
 

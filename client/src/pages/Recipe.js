@@ -11,13 +11,14 @@ const Recipe = () => {
   const [recipeList1, setRecipeList1] = useState([]);
   const [ingredient, setingredient] = useState([]);
 
+  //Fetch recipe data
   useEffect(() => {
     const url = `http://localhost:3001/api/displayRecipe1/${params.id}`;
-
     Axios.get(url).then((response) => {
       setRecipeList1(response.data);
     }, []);
 
+    //Fetch recipe ingredients data
     const url2 = `http://localhost:3001/api/ingredient/${params.id}`;
     Axios.get(url2).then((response) => {
       setingredient(response.data);
