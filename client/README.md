@@ -2,7 +2,7 @@
 
 This folder is the react app for U Cookin.
 
-# Work attribution : 
+# Work attribution 
 
 Keep in mind the project is a collaboration as whole. Attributed work only means the team member is the main developer of the component, but all team members were involved when taking development decisions and fixing bugs or issues.
 
@@ -33,7 +33,7 @@ Keep in mind the project is a collaboration as whole. Attributed work only means
 - [bottomNav.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/bottomNav.module.scss)
 - [pageClasses.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/bottomNav.module.scss)
 
-## Alex
+## AlexPacaldo
 
 ### Pages
 
