@@ -54,21 +54,21 @@ cd..
 
 ## Folder structure
 
-client/
-├── public/
-├── src/
-│   ├── assets/
-│   └── components/
-│   └── img/
-│   └── pages/
-│   └── styles/
-│   └── App.js
-│   └── cindex.js
-server/
-├── controllers/
-├── images/
-├── routes/
-├── index.js
+client/  
+├── public/  
+├── src/  
+│   ├── assets/  
+│   └── components/  
+│   └── img/  
+│   └── pages/  
+│   └── styles/  
+│   └── App.js  
+│   └── cindex.js  
+server/  
+├── controllers/  
+├── images/  
+├── routes/  
+├── index.js  
 
 # Continued development 
 
