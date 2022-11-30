@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# U Cookin Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This folder is the react app for U Cookin.
 
-## Available Scripts
+# Work attribution : 
 
-In the project directory, you can run:
+Keep in mind the project is a collaboration as whole. Attributed work only means the team member is the main developer of the component, but all team members were involved when taking development decisions and fixing bugs or issues.
 
-### `npm start`
+## Wadze213
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Pages
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [UserHome.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/pages/UserHome.js)
+- [Register.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/pages/Register.js)
+- [LogIn.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/pages/LogIn.js)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Components
 
-### `npm run build`
+- [BottomNav.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/BottomNav.js)
+- [LogInForm.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/LogInForm.js)
+- [PaxCount.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/PaxCount.js)
+- [RecipeListContainer.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/RecipeListContainer.js)
+- [userHeader.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/UserHeader.js)
+- [RegisterForm.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/RegisterForm.js)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Styles
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [variables.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/styles/variables.scss)  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [forms.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/forms.module.scss)
+- [userHeader.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/userHeader.module.scss)
+- [paxCount.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/paxCount.module.scss)
+- [bottomNav.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/bottomNav.module.scss)
+- [pageClasses.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/bottomNav.module.scss)
 
-### `npm run eject`
+## Alex
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Pages
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [Home.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/pages/Home.js)
+- [CreateRecipe.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/pages/CreateRecipe.js)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Components
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [RecipeInstructionForm.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/RecipeInstructionForm.js)
+- [RecipeIngredientForm.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/RecipeIngredientsForm.js)
 
-## Learn More
+### Styles
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [RecipeIngredientForm.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/RecipeIngredientsForm.js)
+- [home.css](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/styles/home.css)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Gu-ren
 
-### Code Splitting
+### Pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- [Recipe.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/pages/Recipe.js)
+- [UserMenu.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/pages/UserMenu.js)
 
-### Analyzing the Bundle Size
+### Components
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- [Menu.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/Menu.js)
+- [MenuList.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/MenuList.js)
+- [RecipeInfo.js](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/RecipeInfo.js)
 
-### Making a Progressive Web App
+### Styles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [MenuList.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/MenuList.module.scss)
+- [Menu.module.scss](https://github.com/wadze213/Capstone-Kodego/blob/main/client/src/components/Menu.module.scss)
