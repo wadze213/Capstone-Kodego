@@ -70,6 +70,11 @@ server/
 ├── routes/  
 ├── index.js  
 
+# Work attribution 
+
+- [Client](https://github.com/wadze213/Capstone-Kodego/blob/main/client/README.md)
+- [Server](https://github.com/wadze213/Capstone-Kodego/blob/main/server/README.md)
+
 # Continued development 
 
 The next development steps for us will be to add features such as grocery generation based on recipe in menu, a web-crawler to fetch product pricing accross a range of online supermarkets to compare prices and more social media like features to better assess the success of recipes.  

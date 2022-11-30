@@ -14,24 +14,7 @@ const db = mysql.createPool({
   port: process.env.DATABASE_PORT,
 });
 
-// exports.addRecipe = (req, res) => {
-//   const recipe_id = req.body.recipe_id;
-//   const recipe_name = capitalizeFirstLetter(req.body.recipe_name);
-//   const rec_name = recipe_name.trim()
-//   const category = req.body.category;
-//   const recipe_instruction = req.body.recipe_instruction;
-//   const cust_id = req.body.cust_id;
-
-//   db.query(
-//     "INSERT INTO recipe (recipe_id, recipe_name, category, instructions, cust_id) VALUES(?, ?, ?, ?, ?);",
-//     [recipe_id, rec_name, category, recipe_instruction,cust_id],
-//     (err, result) => {
-//       console.log(err);
-//     }
-//   );
-//   console.log(recipe_id);
-// };
-
+// Add ingredient back end function
 exports.addIngredient = (req, res) => {
   const recipe_name = req.body.recipe_name;
   const RecName = Object.values(recipe_name);
@@ -39,11 +22,12 @@ exports.addIngredient = (req, res) => {
   const ing_name = ingredient_name.trim();
   const unit_id = parseInt(req.body.unit_id);
   const quantity = parseInt(req.body.quantity);
-
+  // Check if ingredient exists
   db.query(
     "SELECT ingredient_name FROM ingredient WHERE ingredient_name = ?",
     ing_name,
     async function (err, result) {
+      // If ingredient does not exists create new ingredient before adding it to recipe_ingredients
       if (!result.length) {
         db.query(
           "INSERT INTO ingredient (ingredient_name) VALUES(?)",
@@ -62,6 +46,7 @@ exports.addIngredient = (req, res) => {
             }
           }
         );
+      // If ingredient exists directly insert it in recipe_ingredient
       } else {
         db.query(
           "INSERT INTO recipe_ingredient (recipe_id, ingredient_id, unit_id, quantity) VALUES ((SELECT recipe_id FROM recipe WHERE recipe_name = ?), (SELECT ingredient_id FROM ingredient WHERE ingredient_name = ?), ?, ?);",
@@ -75,6 +60,7 @@ exports.addIngredient = (req, res) => {
   );
 };
 
+// Get ingredient backend function
 exports.getIngredient = (req, res) => {
   const Rec_Name = req.query.Rec_Name;
   db.query(
@@ -90,6 +76,7 @@ exports.getIngredient = (req, res) => {
   );
 };
 
+// Delete ingredient back end function
 exports.delIngredient = (req, res) => {
   const ingredient_name = req.params.ingredient_name;
   console.log(ingredient_name);
@@ -102,6 +89,7 @@ exports.delIngredient = (req, res) => {
   );
 };
 
+// Cancel recipe back-end function
 exports.cancelRecipe = (req, res) => {
   const recipe_name = req.params.recipe_name;
   console.log(recipe_name);
@@ -124,8 +112,7 @@ exports.cancelRecipe = (req, res) => {
   );
 };
 
-// Glenn work
-
+// Display recipe back-end function
 exports.displayRecipe = (req, res) => {
   db.query(
     "SELECT recipe_id, recipe_name, category,instructions, username,image_name FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id",
@@ -135,9 +122,9 @@ exports.displayRecipe = (req, res) => {
   );
 };
 
+// Display recipe based on ID back-end function
 exports.displayRecipe1 = (req, res) => {
   const recipe_id = req.params.id;
-
   db.query(
     `SELECT recipe_id, recipe_name, category,instructions, username,image_name FROM recipe INNER JOIN customers  ON recipe.cust_id= customers.cust_id WHERE recipe_id = ${recipe_id}`,
     (err, result) => {
@@ -146,6 +133,7 @@ exports.displayRecipe1 = (req, res) => {
   );
 };
 
+// Get ingredients base don recipe ID back-end function
 exports.ingredient = (req, res) => {
   const ingredient_id = req.params.id;
 
@@ -157,6 +145,7 @@ exports.ingredient = (req, res) => {
   );
 };
 
+// Insert recipe into menu back end function
 exports.insertCart = (req, res) => {
   const recipe_id = req.body.recipe_id;
   const cust_id = req.body.cust_id;
@@ -174,6 +163,7 @@ exports.insertCart = (req, res) => {
   );
 };
 
+// Display menu back end function
 exports.DisplayMenu = (req, res) => {
   db.query(
     `SELECT recipe.recipe_id, recipe.recipe_name, recipe.category,recipe.instructions, customers.username ,recipe.image_name
@@ -186,6 +176,7 @@ exports.DisplayMenu = (req, res) => {
   );
 };
 
+// Delete recipe back end function
 exports.delRecipe = (req, res) => {
   const recipe_id = req.params.recipe_id;
   console.log(recipe_id);
