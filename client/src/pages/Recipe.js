@@ -22,7 +22,7 @@ const Recipe = () => {
     Axios.get(url2).then((response) => {
       setingredient(response.data);
     }, []);
-  }, []);
+  });
 
   return (
     <div>

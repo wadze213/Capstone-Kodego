@@ -11,7 +11,7 @@ const RegisterForm = () => {
     const [address1, setaddress1] = useState("");
     const [address2, setaddress2] = useState("");
     const [region, setRegion] = useState("");
-    const [country, setCountry] = useState("Philippines");
+    const country = "Philippines";
 
     const [formAlert, setFormAlert] = useState("All fields are mandatory")
 

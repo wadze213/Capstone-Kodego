@@ -3,11 +3,8 @@ import classes from "./MenuList.module.scss";
 import { FaTrash } from "react-icons/fa";
 import Axios from "axios";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
 
 const RecipeListContainer = ({ recipeSample }) => {
-  const navigate = useNavigate();
-
   const delRecipe = (recipe) => {
     Axios.delete(`http://localhost:3001/api/delRecipe/${recipe}`);
 
