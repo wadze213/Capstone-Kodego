@@ -15,6 +15,14 @@ In this case, we built a recipe sharing web app only featuring the core aspects 
 - [Gu-ren](https://github.com/Gu-ren)
 - [AlexPacaldo](https://github.com/AlexPacaldo)
 
+# Front-end pages live links
+
+- [Home](https://capstone-kodego-m39pjmzzk-wadze213.vercel.app/)
+- [UserHome](https://capstone-kodego-m39pjmzzk-wadze213.vercel.app/userhome) *No recipe displayed because server is not live*
+- [UserMenu](https://capstone-kodego-m39pjmzzk-wadze213.vercel.app/usermenu) *No recipe displayed because server is not live*
+- [CreateRecipe](https://capstone-kodego-m39pjmzzk-wadze213.vercel.app/createrecipe) *Cannot navigate to addingredient because server is not live*
+- [Register/login](https://capstone-kodego-m39pjmzzk-wadze213.vercel.app/register) *Validation not functional because server is not live*
+
 # Quick start guide
 
 1. Install dependecies 
